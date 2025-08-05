@@ -2,19 +2,15 @@
   "version": 2,
   "builds": [
     {
-      "src": "vite.config.js",
+      "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist",
-        "cleanDistDir": true
+        "distDir": "dist"
       }
     },
     {
       "src": "api/**/*.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["api/**", "package.json"]
-      }
+      "use": "@vercel/node"
     }
   ],
   "routes": [
@@ -38,13 +34,8 @@
       "continue": true
     },
     {
-      "src": "/images/(.*)",
-      "dest": "/public/images/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/$1",
-      "check": true
+      "dest": "/$1"
     }
   ]
 }
