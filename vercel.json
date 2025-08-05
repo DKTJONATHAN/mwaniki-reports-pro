@@ -5,7 +5,8 @@
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist"
+        "distDir": "dist",
+        "cleanDistDir": true
       }
     },
     {
@@ -32,6 +33,10 @@
       "src": "/category/(.*)",
       "dest": "/",
       "continue": true
+    },
+    {
+      "src": "/images/(.*)",
+      "dest": "/public/images/$1"
     },
     {
       "src": "/(.*)",
