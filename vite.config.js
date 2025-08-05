@@ -12,8 +12,11 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       input: path.resolve(__dirname, 'index.html'),
-      // Add react-query to external dependencies
-      external: ['@tanstack/react-query']
+      external: [
+        '@tanstack/react-query',
+        'react-hot-toast',
+        'react-helmet-async'
+      ]
     }
   },
   resolve: {
@@ -21,6 +24,13 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
       '@public': path.resolve(__dirname, './public')
     }
+  },
+  optimizeDeps: {
+    include: [
+      '@tanstack/react-query',
+      'react-hot-toast',
+      'react-helmet-async'
+    ]
   },
   publicDir: 'public'
 });
