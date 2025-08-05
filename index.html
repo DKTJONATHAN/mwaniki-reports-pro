@@ -2,46 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mwaniki Reports - Your Trusted News Source</title>
-    <meta name="description" content="Stay updated with the latest news, sports, tech, and entertainment from Jonathan Mwaniki. Your trusted source for breaking news and insightful reporting." />
-    <meta name="keywords" content="news, breaking news, sports, tech, entertainment, Kenya, journalism, Jonathan Mwaniki" />
-    <meta name="author" content="Jonathan Mwaniki" />
-    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Stay updated with the latest news, sports, tech, and entertainment from Jonathan Mwaniki." />
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.jonathanmwaniki.co.ke/" />
-    <meta property="og:title" content="Mwaniki Reports - Your Trusted News Source" />
-    <meta property="og:description" content="Stay updated with the latest news, sports, tech, and entertainment from Jonathan Mwaniki." />
-    <meta property="og:image" content="https://www.jonathanmwaniki.co.ke/images/Jonathan-Mwaniki-logo.png" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://www.jonathanmwaniki.co.ke/" />
-    <meta property="twitter:title" content="Mwaniki Reports - Your Trusted News Source" />
-    <meta property="twitter:description" content="Stay updated with the latest news, sports, tech, and entertainment from Jonathan Mwaniki." />
-    <meta property="twitter:image" content="https://www.jonathanmwaniki.co.ke/images/Jonathan-Mwaniki-logo.png" />
-    <meta name="twitter:site" content="@maestropuns" />
-    <meta name="twitter:creator" content="@maestropuns" />
-
     <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
     
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#1a73e8" />
-    <meta name="msapplication-TileColor" content="#1a73e8" />
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Mwaniki Reports" />
+    <meta property="og:description" content="Your trusted source for news and analysis" />
+    <meta property="og:image" content="/images/Jonathan-Mwaniki-logo.png" />
+    <meta property="og:url" content="https://www.jonathanmwaniki.co.ke" />
+    <meta property="og:type" content="website" />
     
-    <!-- Preconnect for performance -->
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@maestropuns" />
+    
+    <!-- Preload Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     
-    <!-- Critical CSS (optional) -->
+    <!-- Critical CSS -->
     <style>
       #root {
         min-height: 100vh;
@@ -53,6 +41,14 @@
         font-family: 'Inter', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        line-height: 1.5;
+      }
+      .loading-fallback {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #f8f9fa;
       }
     </style>
     
@@ -61,33 +57,41 @@
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but this application doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <div style="text-align: center; padding: 2rem;">
+        <h2>JavaScript Required</h2>
+        <p>This application requires JavaScript to function properly.</p>
+        <p>Please enable JavaScript in your browser settings.</p>
+      </div>
     </noscript>
-    
+
     <div id="root">
-      <!-- Loading state that will be replaced by React -->
-      <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+      <!-- Loading fallback that will be replaced by React -->
+      <div class="loading-fallback">
         <div>Loading application...</div>
       </div>
     </div>
     
-    <!-- Production script (will be auto-replaced during build) -->
-    <script type="module" crossorigin src="/assets/index.js"></script>
-    
-    <!-- Fallback for script loading -->
+    <!-- Error fallback script -->
     <script>
       window.addEventListener('load', function() {
-        if (!document.querySelector('#root').children.length > 1) {
-          console.error('Application failed to load');
-          document.getElementById('root').innerHTML = `
-            <div style="text-align: center; padding: 2rem;">
-              <h2>Application Loading Failed</h2>
-              <p>Please refresh the page or try again later.</p>
-              <button onclick="window.location.reload()">Refresh Page</button>
-            </div>
-          `;
-        }
+        // If React hasn't mounted after 5 seconds, show error
+        setTimeout(function() {
+          if (!document.querySelector('#root').children.length > 1) {
+            document.getElementById('root').innerHTML = `
+              <div style="text-align: center; padding: 2rem;">
+                <h2>Application Loading Failed</h2>
+                <p>Please refresh the page or try again later.</p>
+                <button onclick="window.location.reload()" 
+                        style="padding: 0.5rem 1rem; background: #1a73e8; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                  Refresh Page
+                </button>
+              </div>
+            `;
+          }
+        }, 5000);
       });
     </script>
+    
+    <!-- Vite will automatically inject the script tag here during build -->
   </body>
 </html>
