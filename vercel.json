@@ -11,40 +11,21 @@
     },
     {
       "src": "api/**/*.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node" // Only if you have API routes
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/admin(.*)",
-      "dest": "/index.html",
-      "continue": true
-    },
-    {
-      "src": "/article/(.*)",
-      "dest": "/index.html",
-      "continue": true
-    },
-    {
-      "src": "/category/(.*)",
-      "dest": "/index.html",
-      "continue": true
+      "dest": "/api/$1" // API routes
     },
     {
       "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/images/(.*)",
-      "dest": "/images/$1"
+      "dest": "/dist/assets/$1" // Static assets
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/dist/index.html" // All other routes → SPA fallback
     }
   ]
 }
