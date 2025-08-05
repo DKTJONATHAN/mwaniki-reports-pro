@@ -21,26 +21,30 @@
     },
     {
       "src": "/admin(.*)",
-      "dest": "/",
+      "dest": "/index.html",
       "continue": true
     },
     {
       "src": "/article/(.*)",
-      "dest": "/",
+      "dest": "/index.html",
       "continue": true
     },
     {
       "src": "/category/(.*)",
-      "dest": "/",
+      "dest": "/index.html",
       "continue": true
     },
     {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
       "src": "/images/(.*)",
-      "dest": "/public/images/$1"
+      "dest": "/images/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/$1"
+      "dest": "/index.html"
     }
   ]
 }
