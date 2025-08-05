@@ -4,6 +4,7 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  base: '/', // Explicit base path
   server: {
     port: 3000,
     historyApiFallback: true,
@@ -17,7 +18,10 @@ export default defineConfig({
         'react-hot-toast',
         'react-helmet-async'
       ]
-    }
+    },
+    // Add these optimizations
+    minify: 'terser',
+    sourcemap: true
   },
   resolve: {
     alias: {
@@ -25,12 +29,8 @@ export default defineConfig({
       '@public': path.resolve(__dirname, './public')
     }
   },
-  optimizeDeps: {
-    include: [
-      '@tanstack/react-query',
-      'react-hot-toast',
-      'react-helmet-async'
-    ]
-  },
-  publicDir: 'public'
+  // Critical for production
+  define: {
+    'process.env': {}
+  }
 });
