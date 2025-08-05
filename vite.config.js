@@ -4,33 +4,22 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/', // Explicit base path
+  root: '.', // Explicitly set root to current directory (where index.html lives)
+  base: '/', // Ensure paths start from root
   server: {
     port: 3000,
-    historyApiFallback: true,
+    historyApiFallback: true, // Required for React Router
   },
   build: {
-    outDir: 'dist',
+    outDir: 'dist', // Output folder
+    emptyOutDir: true, // Clear dist/ before build
     rollupOptions: {
-      input: path.resolve(__dirname, 'index.html'),
-      external: [
-        '@tanstack/react-query',
-        'react-hot-toast',
-        'react-helmet-async'
-      ]
+      input: path.resolve(__dirname, 'index.html'), // Explicit entry point
     },
-    // Add these optimizations
-    minify: 'terser',
-    sourcemap: true
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      '@public': path.resolve(__dirname, './public')
-    }
+      '@': path.resolve(__dirname, './src'), // For cleaner imports
+    },
   },
-  // Critical for production
-  define: {
-    'process.env': {}
-  }
 });
