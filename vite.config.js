@@ -11,9 +11,9 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, 'index.html')
-      }
+      input: path.resolve(__dirname, 'index.html'),
+      // Add react-query to external dependencies
+      external: ['@tanstack/react-query']
     }
   },
   resolve: {
